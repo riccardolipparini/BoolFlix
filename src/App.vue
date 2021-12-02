@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Search @search="searching" />
+    <Search @ricerca="searching" />
     <Cards :details="movies"/>
   </div>
 </template>
@@ -15,28 +15,25 @@ export default {
   components: {
     Search,
     Cards,
-
   },
   data(){
     return {
-      apiUrl: `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=${this.searchText}`,
+      apiUrl: `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=`,
       movies: [],
       searchText: "",
     }
   },
-  created(){
-    this.getMovies();
-  },
   methods:{
     getMovies(){
       axios
-      .get(this.apiUrl)
+      .get(this.apiUrl + this.searchText)
       .then((result) => {
-        this.movies = result.data.response
+        this.movies = result.data.results
       })
     },
     searching(titoloFilm){
       this.searchText = titoloFilm;
+      this.getMovies();
     }
   }
  

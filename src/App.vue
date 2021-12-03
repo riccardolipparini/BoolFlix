@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <Search @ricercaMovies="searchingMovies"
-    @ricercaSeries="searchingSeries"
+    <Search @ricercaMoviesSeries="searchingMoviesSeries"
      />
     <Cards :detailsMovies="movies"
     :detailsSeries="series"
@@ -45,14 +44,12 @@ export default {
       })
     },
     
-    searchingMovies(titoloFilm){
+    searchingMoviesSeries(titoloFilm){
       this.searchText = titoloFilm;
       this.getMovies();
-    },
-    searchingSeries(titoloSerie){
-      this.searchText = titoloSerie;
       this.getSeries();
-    }
+    },
+    
   }
  
 }

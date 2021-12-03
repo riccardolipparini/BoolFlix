@@ -1,11 +1,20 @@
 <template>
   <main>
       <div class="contain-cards">
-          <div class="cards" v-for="films, i in details" :key="i">
+          <div class="cards" v-for="films, i in detailsMovies" :key="i">
             <h1>{{films.title}}</h1>
             <h2>{{films.original_title}}</h2>
-            <h3></h3>
-            <h4></h4>
+            <h3>{{films.vote_average}}</h3>
+            <h4>{{films.original_language}}</h4>
+          </div>
+      </div>
+
+      <div class="contain-cards">
+          <div class="cards" v-for="films, i in detailsSeries" :key="i">
+            <h1>{{films.title}}</h1>
+            <h2>{{films.original_title}}</h2>
+            <h3>{{films.vote_average}}</h3>
+            <h4>{{films.original_language}}</h4>
           </div>
       </div>
   </main>
@@ -18,7 +27,8 @@ export default {
   name: 'Cards',
 
  props:{
-    details: Array
+    detailsMovies: Array,
+    detailsSeries: Array
 }
 }
 

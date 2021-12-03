@@ -8,7 +8,9 @@
           placeholder="cerca un film..."
           v-model="searchFilm"
         />
-        <button @click.prevent="$emit(`ricerca`, searchFilm)">Cerca</button>
+        <button @click.prevent="$emit(`ricercaMovies`, searchFilm)"
+        @click.prevent="$emit(`ricercaSeries`, searchSeries)"
+        >Cerca</button>
       </div>
     </div>
   </header>
@@ -22,6 +24,7 @@ export default {
   data() {
     return {
       searchFilm: "",
+      ricercaSeries: ""
     };
   },
   

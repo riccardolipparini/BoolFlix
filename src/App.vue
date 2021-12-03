@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <Search @ricerca="searching" />
-    <Cards :details="movies"/>
+    <Search @ricercaMovies="searchingMovies"
+    @ricercaSeries="searchingSeries"
+     />
+    <Cards :detailsMovies="movies"
+    :detailsSeries="series"
+    />
   </div>
 </template>
 
@@ -18,22 +22,36 @@ export default {
   },
   data(){
     return {
-      apiUrl: `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=`,
+      apiUrlFilms: `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=`,
+      apiUrlSeries: `https://api.themoviedb.org/3/search/tv?api_key=e99307154c6dfb0b4750f6603256716d&language=it_IT&query=`,
       movies: [],
+      series: [],
       searchText: "",
     }
   },
   methods:{
     getMovies(){
       axios
-      .get(this.apiUrl + this.searchText)
+      .get(this.apiUrlFilms + this.searchText)
       .then((result) => {
         this.movies = result.data.results
       })
     },
-    searching(titoloFilm){
+    getSeries(){
+      axios
+      .get(this.apiUrlSeries + this.searchText)
+      .then((result) => {
+        this.series = result.data.results
+      })
+    },
+    
+    searchingMovies(titoloFilm){
       this.searchText = titoloFilm;
       this.getMovies();
+    },
+    searchingSeries(titoloSerie){
+      this.searchText = titoloSerie;
+      this.getSeries();
     }
   }
  

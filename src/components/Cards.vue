@@ -164,6 +164,7 @@ main {
   color: white;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.6);
+  transition: opacity 0.25s;
   
 }
 .contain_locandina:hover{
